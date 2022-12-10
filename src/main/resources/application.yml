@@ -1,0 +1,79 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB-URL}
+    username: ${DB-USERNAME}
+    password: ${DB-PASSWORD}
+  redis:
+    host: localhost
+    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+auth:
+  jwt:
+    header: ${HEADER}
+    secret: ${SECRET-KEY}
+    accessExp: ${ACCESS-EXP}
+    refreshExp: ${REFRESH-EXP}
+    prefix: ${PREFIX}
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+server:
+  port: 8080
+
+cloud:
+  aws:
+    s3:
+      bucket: ${BUCKET-NAME}
+    region:
+      static: ${REGION}
+    stack:
+      auto: false
+    credentials:
+      accessKey: ${S3-ACCESS-KEY}
+      secretKey: ${S3-SECRET-KEY}
+
+---
+
+spring:
+  security:
+    oauth2:
+      user:
+        github:
+          client-id: ${CLIENT-ID}
+          client-secret: ${CLIENT-SECRET}
+          redirect-url: ${REDIRECT-URL}
+      provider:
+        github:
+          token-url: ${TOKEN-URL}
+          user-info-url: ${USER-INFO-URL}
+  oauth:
+    git:
+      token: ${GIT-TOKEN}
+    bsm:
+      client:
+        id: ${BSM-CLIENT-ID}
+        secret-key: ${BSM-SECRET-KEY}
