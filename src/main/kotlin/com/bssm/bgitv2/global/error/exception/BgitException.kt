@@ -1,8 +1,5 @@
 package com.bssm.bgitv2.global.error.exception
 
-import lombok.AllArgsConstructor
-import lombok.Getter
-import lombok.RequiredArgsConstructor
 import java.lang.RuntimeException
 
 /**
