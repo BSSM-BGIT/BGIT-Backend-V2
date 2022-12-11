@@ -1,7 +1,6 @@
 package com.bssm.bgitv2.global.error.exception
 
 import com.fasterxml.jackson.annotation.JsonFormat
-import lombok.Getter
 
 /**
  * @Created by 최원용 on 2022. 12. 11.

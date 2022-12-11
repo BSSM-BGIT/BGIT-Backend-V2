@@ -1,6 +1,5 @@
 package com.bssm.bgitv2.global.entity
 
-import lombok.Getter
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -14,7 +13,6 @@ import javax.persistence.MappedSuperclass
  * @version 2.0.0
  */
 
-@Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
 class BaseTimeEntity {

@@ -1,6 +1,9 @@
 package com.bssm.bgitv2.global.security
 
-import lombok.RequiredArgsConstructor
+import com.bssm.bgitv2.global.error.CustomAuthenticationEntryPoint
+import com.bssm.bgitv2.global.security.jwt.JwtProvider
+import com.bssm.bgitv2.global.security.jwt.auth.JwtAuth
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -14,9 +17,10 @@ import kotlin.jvm.Throws
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 class SecurityConfig(
-
+        private val jwtProvider: JwtProvider,
+        private val jwtAuth: JwtAuth,
+        private val objectMapper: ObjectMapper
 ) {
     @Bean
     fun passwordEncoder() = BCryptPasswordEncoder()
@@ -38,6 +42,10 @@ class SecurityConfig(
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
                 .anyRequest().permitAll()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(CustomAuthenticationEntryPoint(objectMapper))
+
+                .and().apply(FilterConfig(jwtProvider, jwtAuth));
 
         return http.build();
     }

@@ -2,7 +2,6 @@ package com.bssm.bgitv2.global.error
 
 import com.bssm.bgitv2.global.error.exception.ErrorCode
 import com.fasterxml.jackson.databind.ObjectMapper
-import lombok.RequiredArgsConstructor
 import org.springframework.http.MediaType
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.web.AuthenticationEntryPoint
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletResponse
  * @version 2.0.0
  */
 
-@RequiredArgsConstructor
 @Component
 class CustomAuthenticationEntryPoint(
         private val objectMapper: ObjectMapper
