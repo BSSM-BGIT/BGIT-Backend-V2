@@ -2,7 +2,6 @@ package com.bssm.bgitv2.domain.user.domain
 
 import com.bssm.bgitv2.domain.user.domain.type.Authority
 import com.bssm.bgitv2.global.entity.BaseTimeEntity
-import lombok.Getter
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.DynamicUpdate
 import javax.persistence.Entity
@@ -17,7 +16,6 @@ import javax.persistence.Id
  */
 
 @Entity
-@Getter
 @DynamicInsert
 @DynamicUpdate
 class User(
