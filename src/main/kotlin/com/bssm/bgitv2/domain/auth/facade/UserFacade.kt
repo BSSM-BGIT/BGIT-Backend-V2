@@ -54,7 +54,6 @@ class UserFacade(
                 grade = student.grade,
                 classNo = student.classNo,
                 studentNo = student.studentNo,
-                bsmToken = bsmToken,
                 authority = Authority.USER
 //                imaginary(Imaginary.REAL_NUMBER)
         )
@@ -68,7 +67,6 @@ class UserFacade(
         val user = User(
                 email = dto.email,
                 name = teacher.name,
-                bsmToken = bsmToken,
                 grade = null,
                 classNo = null,
                 studentNo = null,
