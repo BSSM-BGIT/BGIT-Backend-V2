@@ -10,10 +10,10 @@ import java.time.ZonedDateTime
  */
 
 class TokenResponseDto(
-        private val accessToken: String,
-        private val refreshToken: String,
+        val accessToken: String,
+        val refreshToken: String,
 
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-        private val expiredAt: ZonedDateTime
+        val expiredAt: ZonedDateTime
 ) {
 }

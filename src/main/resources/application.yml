@@ -18,7 +18,7 @@ spring:
 
     generate-ddl: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
@@ -63,17 +63,15 @@ spring:
     oauth2:
       user:
         github:
-          client-id: ${CLIENT-ID}
-          client-secret: ${CLIENT-SECRET}
-          redirect-url: ${REDIRECT-URL}
-      provider:
-        github:
-          token-url: ${TOKEN-URL}
-          user-info-url: ${USER-INFO-URL}
+          clientId: ${CLIENT-ID}
+          clientSecret: ${CLIENT-SECRET}
+          redirectUrl: ${REDIRECT-URL}
+          tokenUrl: ${TOKEN-URL}
+          userInfoUrl: ${USER-INFO-URL}
   oauth:
     git:
       token: ${GIT-TOKEN}
     bsm:
       client:
         id: ${BSM-CLIENT-ID}
-        secret-key: ${BSM-SECRET-KEY}
+        secretKey: ${BSM-SECRET-KEY}

@@ -30,7 +30,7 @@ class JwtAuth(
             throw InvalidJwtException()
         }
         val userDetails: UserDetails = getDetails(body)
-        return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities())
+        return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
     }
 
     fun getJws(token: String): Jws<Claims> {
