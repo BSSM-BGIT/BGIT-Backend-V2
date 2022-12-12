@@ -25,7 +25,7 @@ class AuthDetails(
     }
 
     override fun getUsername(): String {
-        return user.name
+        return user.email
     }
 
     override fun isAccountNonExpired(): Boolean {

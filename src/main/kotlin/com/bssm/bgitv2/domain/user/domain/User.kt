@@ -21,7 +21,6 @@ class User(
         var grade: Int?,
         var classNo: Int?,
         var studentNo: Int?,
-//        var bsmToken: String,
         @Enumerated(EnumType.STRING)
         var authority: Authority,
 ): BaseTimeEntity() {
@@ -29,8 +28,6 @@ class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L;
-
-//    var password: String? = null
 
     fun updateStudentGrade(grade: Int) {
         this.grade = grade
