@@ -1,5 +1,6 @@
 package com.bssm.bgitv2.domain.user.domain
 
+import com.bssm.bgitv2.domain.github.domain.Github
 import com.bssm.bgitv2.domain.user.domain.type.Authority
 import com.bssm.bgitv2.global.entity.BaseTimeEntity
 import org.hibernate.annotations.DynamicInsert
@@ -29,6 +30,9 @@ class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L;
 
+    @OneToOne(mappedBy = "user")
+    var github: Github? = null
+
     fun updateStudentGrade(grade: Int) {
         this.grade = grade
     }
@@ -43,5 +47,9 @@ class User(
 
     fun updateStudentNo(studentNo: Int) {
         this.studentNo = studentNo
+    }
+
+    fun updateGithub(github: Github) {
+        this.github = github
     }
 }

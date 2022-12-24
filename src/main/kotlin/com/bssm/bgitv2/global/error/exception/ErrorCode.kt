@@ -37,6 +37,7 @@ enum class ErrorCode(
     ALREADY_EXISTS_USER(409, "USER-409-1", "User Already Exists"),
     ALREADY_EXISTS_JOINED(409, "USER-409-2", "Already Joined"),
 
+    CONNECTION_REFUSED(500, "NETWORK-500-1", "Connection Refused Error"),
     REDIS_TRANSACTION_EXCEPTION(500, "REDIS-500-1", "Cannot Read Cache From Redis"),
     INTERNAL_SERVER_ERROR(500, "SERVER-500-1", "Internal Server Error");
     fun status(): Int = status

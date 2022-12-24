@@ -68,9 +68,8 @@ spring:
           redirectUrl: ${REDIRECT-URL}
           tokenUrl: ${TOKEN-URL}
           userInfoUrl: ${USER-INFO-URL}
+          token: ${GIT-TOKEN}
   oauth:
-    git:
-      token: ${GIT-TOKEN}
     bsm:
       client:
         id: ${BSM-CLIENT-ID}

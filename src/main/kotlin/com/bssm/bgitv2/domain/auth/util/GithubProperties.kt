@@ -16,6 +16,7 @@ class GithubProperties(
         val clientSecret: String,
         val redirectUrl: String,
         val tokenUrl: String,
+        val token: String,
         val userInfoUrl: String
 ) {
 }
