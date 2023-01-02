@@ -3,12 +3,15 @@ package com.bssm.bgitv2.domain.auth.facade
 import com.bssm.bgitv2.domain.user.domain.User
 import com.bssm.bgitv2.domain.user.domain.repo.UserRepository
 import com.bssm.bgitv2.domain.user.domain.type.Authority
+import com.bssm.bgitv2.domain.user.exception.UserNotLoginException
+import com.bssm.bgitv2.global.security.util.SecurityUtil
 import leehj050211.bsmOauth.dto.response.BsmResourceResponse
 import leehj050211.bsmOauth.dto.response.BsmStudentResponse
 import leehj050211.bsmOauth.dto.response.BsmTeacherResponse
 import leehj050211.bsmOauth.type.BsmAuthUserRole.*
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
+import java.security.Security
 
 /**
  * @Created by 최원용 on 2022. 12. 12.
@@ -27,6 +30,11 @@ class UserFacade(
 
     private fun findByEmail(email: String): User? {
         return userRepository.findByEmail(email)
+    }
+
+    fun getCurrentUser(): User {
+        println("email:" + SecurityUtil.getCurrentUser().username)
+        return findByEmail(SecurityUtil.getCurrentUser().username) ?: throw UserNotLoginException()
     }
 
     fun getAndUpdateOrElseSignUp(resource: BsmResourceResponse, token: String): User {

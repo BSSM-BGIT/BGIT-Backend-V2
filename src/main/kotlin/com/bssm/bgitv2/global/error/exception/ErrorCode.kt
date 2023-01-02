@@ -23,6 +23,7 @@ enum class ErrorCode(
     BSM_AUTH_INVALID_CLIENT(401, "BSM-401-1", "Invalid BSM Auth Invalid Client"),
     PASSWORD_MISMATCH(401, "AUTH-401-1", "Password Mismatch"),
 
+    USER_NOT_LOGIN(403, "USER-403-1", "User Not Login"),
     FORBIDDEN(403, "COMMON-403-1", "Forbidden"),
     DONT_ACCESS_OTHER_PLAN(403, "PLAN-403-1", "Don't Access Other Plan"),
 
@@ -38,7 +39,6 @@ enum class ErrorCode(
 
     REDIS_TRANSACTION_EXCEPTION(500, "REDIS-500-1", "Cannot Read Cache From Redis"),
     INTERNAL_SERVER_ERROR(500, "SERVER-500-1", "Internal Server Error");
-
     fun status(): Int = status
     fun code(): String = code
     fun message(): String = message

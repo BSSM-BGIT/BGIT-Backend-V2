@@ -21,8 +21,10 @@ import kotlin.jvm.Throws
 class SecurityConfig(
         private val jwtProvider: JwtProvider,
         private val jwtAuth: JwtAuth,
-        private val objectMapper: ObjectMapper
+        private val objectMapper: ObjectMapper,
 ) {
+    private val USER: String = "USER"
+
     @Bean
     fun passwordEncoder() = BCryptPasswordEncoder()
 
@@ -42,6 +44,7 @@ class SecurityConfig(
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .antMatchers(HttpMethod.POST, "/login/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/user").permitAll()
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(CustomAuthenticationEntryPoint(objectMapper))
