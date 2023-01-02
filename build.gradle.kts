@@ -60,6 +60,13 @@ dependencies {
     // https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl
     implementation("org.codehaus.jackson:jackson-mapper-asl:1.9.13")
 
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+
+    // https://mvnrepository.com/artifact/org.kohsuke/github-api
+    implementation("org.kohsuke:github-api:1.132")
+
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
     implementation("com.github.leehj050211:bsm-oauth-java:1.0.0")
 

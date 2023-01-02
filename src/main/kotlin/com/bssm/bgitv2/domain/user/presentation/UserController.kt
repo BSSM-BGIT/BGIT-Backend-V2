@@ -24,4 +24,5 @@ class UserController(
     fun currentUserInfo(): UserResponseDto {
         return userService.getCurrentUser();
     }
+
 }
