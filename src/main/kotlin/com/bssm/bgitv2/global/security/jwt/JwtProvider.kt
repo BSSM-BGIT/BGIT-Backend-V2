@@ -30,13 +30,15 @@ class JwtProvider(
         private val jwtAuth: JwtAuth
 ) {
 
-    fun generateToken(authId: String, role: String): TokenResponseDto {
+    fun generateToken(email: String, role: String): TokenResponseDto {
         val accessToken: String = jwtProperties.prefix + EMPTY.message +
-                generateToken(authId, role, ACCESS_KEY.message, jwtProperties.accessExp)
-        val refreshToken = jwtProperties.prefix + EMPTY.message + generateToken(authId, role, ACCESS_KEY.message, jwtProperties.refreshExp)
+                generateToken(email, role, ACCESS_KEY.message, jwtProperties.accessExp)
+        println("accessToken = $accessToken")
+        val refreshToken = jwtProperties.prefix + EMPTY.message + generateToken(email, role, ACCESS_KEY.message, jwtProperties.refreshExp)
+        println("refreshToken = $refreshToken")
 
         refreshTokenRepository.save(RefreshToken(
-                authId,
+                email,
                 refreshToken,
                 role,
                 jwtProperties.refreshExp * 1000)
@@ -45,12 +47,12 @@ class JwtProvider(
         return TokenResponseDto(accessToken, refreshToken, getExpiredTime())
     }
 
-    private fun generateToken(authId: String, role: String, type: String, exp: Long): String? {
+    private fun generateToken(email: String, role: String, type: String, exp: Long): String? {
         return Jwts.builder()
-                .setSubject(authId)
+                .setSubject(email)
                 .setHeaderParam(TYPE.message, type)
                 .claim(ROLE.message, role)
-                .claim(EMAIL.message, authId)
+                .claim(EMAIL.message, email)
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.secret)
                 .setExpiration(
                         Date(System.currentTimeMillis() + exp * 1000)
@@ -76,8 +78,8 @@ class JwtProvider(
     private fun ifAuthIdIsPresentThrowException(bearerToken: String) {
         val body: Claims = jwtAuth.getJws(bearerToken).body
         val tokenAuthId = body[EMAIL.message].toString()
-        val authId: Email? = emailRepository.findByEmail(tokenAuthId)
-        if (authId != null) {
+        val email: Email? = emailRepository.findByEmail(tokenAuthId)
+        if (email != null) {
             throw com.bssm.bgitv2.global.security.exception.ExpiredJwtException()
         }
     }

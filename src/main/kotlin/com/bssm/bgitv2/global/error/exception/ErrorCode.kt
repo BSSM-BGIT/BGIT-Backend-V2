@@ -20,6 +20,7 @@ enum class ErrorCode(
 
     EXPIRED_JWT(401, "COMMON-401-1", "Expired Jwt"),
     INVALID_JWT(401, "COMMON-401-2", "Invalid Jwt"),
+    BSM_AUTH_INVALID_CLIENT(401, "BSM-401-1", "Invalid BSM Auth Invalid Client"),
     PASSWORD_MISMATCH(401, "AUTH-401-1", "Password Mismatch"),
 
     FORBIDDEN(403, "COMMON-403-1", "Forbidden"),

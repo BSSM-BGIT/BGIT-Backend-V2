@@ -6,6 +6,7 @@ import com.bssm.bgitv2.global.security.jwt.auth.JwtAuth
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
@@ -40,10 +41,10 @@ class SecurityConfig(
                 .and()
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-
-                .anyRequest().permitAll()
+                .antMatchers(HttpMethod.POST, "/login/**").permitAll()
                 .and()
-                .exceptionHandling().authenticationEntryPoint(CustomAuthenticationEntryPoint(objectMapper))
+                .exceptionHandling()
+                .authenticationEntryPoint(CustomAuthenticationEntryPoint(objectMapper))
 
                 .and().apply(FilterConfig(jwtProvider, jwtAuth));
 
