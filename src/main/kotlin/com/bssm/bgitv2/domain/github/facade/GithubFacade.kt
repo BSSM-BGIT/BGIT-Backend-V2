@@ -19,4 +19,8 @@ class GithubFacade(
     fun searchGithubDetails(id: Long): Github? {
         return githubRepository.findByIdOrNull(id);
     }
+
+    fun getAll(): List<Github> {
+        return githubRepository.findAll();
+    }
 }

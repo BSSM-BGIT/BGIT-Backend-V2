@@ -21,6 +21,11 @@ class GithubController(
 
     @GetMapping("/{id}")
     fun getDetail(@PathVariable id: Long): GithubResponse {
-        return githubService.getDetail(id);
+        return githubService.searchDetail(id)
+    }
+
+    @GetMapping
+    fun getAll(): List<GithubResponse> {
+        return githubService.searchAll();
     }
 }

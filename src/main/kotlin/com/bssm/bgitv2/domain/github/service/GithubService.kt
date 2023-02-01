@@ -1,5 +1,6 @@
 package com.bssm.bgitv2.domain.github.service
 
+import com.bssm.bgitv2.domain.github.domain.Github
 import com.bssm.bgitv2.domain.github.facade.GithubFacade
 import com.bssm.bgitv2.domain.github.presentation.dto.res.GithubResponse
 import com.bssm.bgitv2.global.annotation.ServiceWithTransactionalReadOnly
@@ -15,7 +16,11 @@ class GithubService(
         private val githubFacade: GithubFacade
 ) {
 
-    fun getDetail(id: Long): GithubResponse {
+    fun searchDetail(id: Long): GithubResponse {
         return GithubResponse(githubFacade.searchGithubDetails(id)!!);
+    }
+
+    fun searchAll(): List<GithubResponse> {
+        return githubFacade.getAll().map { github: Github -> GithubResponse(github) }
     }
 }
